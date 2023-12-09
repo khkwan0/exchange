@@ -1,0 +1,8 @@
+environment
+postgres/
+redis/
+etc/letsencrypt
+node_modules/
+.env
+assets/
+html/

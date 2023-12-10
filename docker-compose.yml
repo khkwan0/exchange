@@ -15,6 +15,10 @@ services:
     volumes:
       - ./api:/usr/src/app
       - ./assets:/usr/src/app/assets
+  workers:
+    build: ./workers
+    volumes:
+      - ./workers:/usr/src/app
   redis:
     image: redis
     volumes:

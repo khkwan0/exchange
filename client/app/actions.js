@@ -29,10 +29,11 @@ export async function handleLogin(data) {
 }
 
 export async function handleOrder(data) {
+  const action = data.get('market_action')
   const type = data.get('type')
   const amount = data.get('amount')
   const price = data.get('price')
-  console.log(type, amount, price)
+  const market = data.get('market')
   const sessionCookie = cookies().get('session').value
   const res = await fetch('https://chuckwow.fun/api/order', {
     method: 'POST',
@@ -42,10 +43,13 @@ export async function handleOrder(data) {
       Authorization: `Bearer ${sessionCookie}`,
     },
     body: JSON.stringify({
-      type: type,
-      amount: amount,
-      price: price,
-      market: 'btc-usdc',
+      action,
+      type,
+      amount,
+      price,
+      market,
     })
   })
+  const json = await res.json()
+  return json
 }

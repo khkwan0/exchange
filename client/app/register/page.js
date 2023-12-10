@@ -13,7 +13,6 @@ const Register = () => {
       method: 'POST',
       body: formData,
     })
-    console.log(res)
   }
 
   return (

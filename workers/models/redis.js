@@ -49,9 +49,20 @@ async function lPush(key, value) {
   }
 }
 
+async function brPop(key, timeout = 1) {
+  try {
+    const res = await redisClient.brPop(key, timeout)
+    return res
+  } catch (e) {
+    console.log(e)
+    throw new Error(e)
+  }
+}
+
 export {
   cacheDel,
   cacheGet,
   cacheSet,
   lPush,
+  brPop,
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {handleLogin} from '../actions.js'
 import {redirect} from 'next/navigation'
+import {Input} from '@/components/ui/input'
 
 export default function Login() {
   async function onSubmit(formData) {
@@ -17,11 +18,11 @@ export default function Login() {
       <form action={onSubmit}>
         <div>
           <div>email</div>
-          <input type="email" name="email" className="bg-white text-black" />
+          <Input type="email" name="email" />
         </div>
         <div>
           <div>password</div>
-          <input type="password" name="password" className="bg-white text-black" />
+          <Input type="password" name="password" />
         </div>
         <div>
           <button type="submit">Login</button>

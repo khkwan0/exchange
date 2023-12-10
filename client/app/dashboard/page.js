@@ -1,5 +1,7 @@
 import {cookies} from 'next/headers'
 import {handleOrder} from '../actions'
+import {Input} from '@/components/ui/input'
+import {Button} from '@/components/ui/button'
 
 export default async function Dashboard() {
 
@@ -22,15 +24,15 @@ export default async function Dashboard() {
               <div>
                 Price
               </div>
-              <input type="numeric" name="price" className="bg-white text-black" />
+              <Input type="numeric" name="price" />
             </div>
             <div>
               <div>
                 Amount 
               </div>
-              <input type="numeric" name="amount" className="bg-white text-black" />
+              <Input type="numeric" name="amount" />
             </div>
-            <button type="submit">Buy</button>
+            <Button type="submit">Buy</Button>
           </form>
         </div>
         <div className="border border-white p-6 mt-10">
@@ -43,15 +45,15 @@ export default async function Dashboard() {
               <div>
                 Price
               </div>
-              <input type="numeric" name="price" className="bg-white text-black" />
+              <Input type="numeric" name="price" />
             </div>
             <div>
               <div>
                 Amount 
               </div>
-              <input type="numeric" name="amount" className="bg-white text-black" />
+              <Input type="numeric" name="amount" />
             </div>
-            <button type="submit">Sell</button>
+            <Button type="submit">Sell</Button>
           </form>
         </div>
       </div>

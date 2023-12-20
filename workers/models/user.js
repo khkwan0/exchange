@@ -1,4 +1,5 @@
-import {doQuery} from './db.js'
+import {doQuery} from '../lib/index.js'
+
 
 const getUserByEmail = async email => {
   try {
@@ -19,7 +20,7 @@ const register = async (email, hash) => {
   }
 }
 
-export default {
+export {
   getUserByEmail,
   register,
 }

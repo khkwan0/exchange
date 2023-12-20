@@ -1,10 +1,9 @@
-import user from './user.js'
-import {cacheDel, cacheGet, cacheSet, lPush} from './redis.js'
+import {handleLimitOrder, handleMarketOrder} from './orders.js'
+import {getUserByEmail, register} from './user.js'
 
 export {
-  cacheDel,
-  cacheGet,
-  cacheSet,
-  lPush,
-  user,
+  handleLimitOrder,
+  handleMarketOrder,
+  getUserByEmail,
+  register,
 }

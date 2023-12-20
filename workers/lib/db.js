@@ -11,11 +11,9 @@ const pool = new Pool({
   password: process.env.POSTGRES_PASSWORD
 })
 
-async function doQuery(queryString, params) {
+async function doQuery(client, queryString, params) {
   try {
-    const client = await pool.connect()
     const res = await client.query(queryString, params)
-    client.release()
     return res
   } catch (e) {
     throw new Error(e)
@@ -24,4 +22,5 @@ async function doQuery(queryString, params) {
 
 export {
   doQuery,
+  pool
 }

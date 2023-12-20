@@ -1,6 +1,6 @@
 import Fastify from 'fastify'
-import {doQuery} from '../models/db.js'
-import {brPop} from '../models/redis.js'
+import {handleLimitOrder, handleMarketOrder} from '../models/index.js'
+import {brPop} from '../lib/redis.js'
 
 const fastify = Fastify({ logger: true})
 
@@ -12,7 +12,8 @@ const markets = [
   while(1) {
     try {
       for (let i = 0; i < markets.length; i++) {
-        const res = await brPop(markets[i], 1)
+        // pull from fifo queue and store into book
+        const res = await brPop(markets[i], 1) // pops off the queue
         if (
           res &&
           typeof res.key !== 'undefined' &&
@@ -21,18 +22,10 @@ const markets = [
         ) {
           const order = JSON.parse(res.element)
           if (order.type === 'limit') {
-            // pull from fifo queue and store into book
-            const query = 'insert into order_book(market, amount, price, action, order_id, active, owner_id) values($1, $2, $3, $4, $5, $6, $7)'
-            const toSave = [
-              order.market,
-              order.amount,
-              order.price,
-              order.action,
-              order.uuid,
-              true,
-              order.ownerId,
-            ]
-            const resQuery = await doQuery(query, toSave)
+            const orderRes = await handleLimitOrder(order)
+            console.log(orderRes)
+          } else if (order.type === 'market') {
+            await handleMarketOrder(order)
           }
         }
       }

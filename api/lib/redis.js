@@ -1,7 +1,7 @@
 import {createClient} from 'redis'
 import Fastify from 'fastify'
 import * as dotenv from 'dotenv'
-const fastify = Fastify({ logger: true})
+const fastify = Fastify({logger: true})
 
 dotenv.config()
 
@@ -49,9 +49,20 @@ async function lPush(key, value) {
   }
 }
 
+async function brPop(key, timeout = 1) {
+  try {
+    const res = await redisClient.brPop(key, timeout)
+    return res
+  } catch (e) {
+    console.log(e)
+    throw new Error(e)
+  }
+}
+
 export {
   cacheDel,
   cacheGet,
   cacheSet,
   lPush,
+  brPop,
 }

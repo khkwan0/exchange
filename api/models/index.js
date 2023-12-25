@@ -1,10 +1,7 @@
 import user from './user.js'
-import {cacheDel, cacheGet, cacheSet, lPush} from './redis.js'
+import orders from './orders.js'
 
 export {
-  cacheDel,
-  cacheGet,
-  cacheSet,
-  lPush,
+  orders,
   user,
 }

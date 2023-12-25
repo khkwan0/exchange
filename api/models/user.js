@@ -1,4 +1,4 @@
-import {doQuery} from './db.js'
+import {doQuery} from '../lib/db.js'
 
 const getUserByEmail = async email => {
   try {

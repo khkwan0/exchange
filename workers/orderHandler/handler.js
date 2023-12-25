@@ -8,7 +8,7 @@ const markets = [
   'btc-usdc'
 ]
 
-;(async () => {
+async function HandlerStart() {
   while(1) {
     try {
       for (let i = 0; i < markets.length; i++) {
@@ -23,7 +23,6 @@ const markets = [
           const order = JSON.parse(res.element)
           if (order.type === 'limit') {
             const orderRes = await handleLimitOrder(order)
-            console.log(orderRes)
           } else if (order.type === 'market') {
             await handleMarketOrder(order)
           }
@@ -33,11 +32,12 @@ const markets = [
       fastify.log.error(e.message)
     }
   }
-})()
+}
 
 ;(async () => {
   try {
     await fastify.listen({port: 3000, host: '0.0.0.0'})
+    HandlerStart()
   } catch (e) {
     fastify.log.error(e)
     process.exit(1)

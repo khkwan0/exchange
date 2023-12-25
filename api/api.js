@@ -7,7 +7,7 @@ import {DateTime} from 'luxon'
 import fs from 'fs'
 import fetch from 'node-fetch'
 import routes from './routes/routes.js'
-import {cacheGet} from './models/redis.js'
+import {cacheGet} from './lib/redis.js'
 
 const fastify = Fastify({ logger: true})
 fastify.register(fastifyJWT, {secret: process.env.JWT_SECRET})

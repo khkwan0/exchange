@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import {cacheSet, cacheGet} from '../../models/index.js'
+import {cacheSet, cacheGet} from '../index.js'
 
 async function createAndSaveSecretKey(user) {
   const token = 'token:' + await getRandomBytes()
